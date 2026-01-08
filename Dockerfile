@@ -1,4 +1,11 @@
-FROM n8nio/n8n
+FROM node:20-alpine
 
-EXPOSE 5678
+WORKDIR /app
 
+COPY package*.json ./
+RUN npm install --production
+
+COPY . .
+
+EXPOSE 8080
+CMD ["npm", "start"]
